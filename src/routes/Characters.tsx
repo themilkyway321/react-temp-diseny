@@ -10,10 +10,16 @@ padding: 0 20px;
 margin: 0 auto;
 width:1400px;
 `;
+const Loader = styled.div`
+margin: 0 auto;
+font-size: 40px;
+  
+`;
 const Header = styled.header`
 height: 10vh;
 text-align: center;
-padding-top:60px;
+padding-top:20px;
+margin: 40px 0;
 `;
 
 const Title = styled.h2`
@@ -71,11 +77,15 @@ function Characters(){
       <Header>
         <Title>Diseny Charcters</Title>
         </Header>
-      {isLoading? "Loading..." :(
+      {isLoading? <Loader>loading..</Loader> :(
         <CharactersList>
           {data?.slice(0,48).map((item)=>
             <CharacterName key={item.id}>
-            <Link to={{pathname:`/character/${item.id}`, state: {name: item.name}}}><img src={`${item.imageUrl}`} />
+            <Link to={{
+              pathname:`/character/${item.id}`,
+              state: {name: item.name}
+              }}>
+                <img src={`${item.imageUrl}`} />
             <p>{item.name}</p>
             </Link>
             </CharacterName>
